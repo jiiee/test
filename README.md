@@ -1,11 +1,16 @@
+# 目录
 <!-- MarkdownTOC autolink="true" -->
 
 - [ui测试](#ui%E6%B5%8B%E8%AF%95)
 	- [webui 测试（selenium）](#webui-%E6%B5%8B%E8%AF%95%EF%BC%88selenium%EF%BC%89)
+		- [下载](#%E4%B8%8B%E8%BD%BD)
 		- [项目文件](#%E9%A1%B9%E7%9B%AE%E6%96%87%E4%BB%B6)
 		- [启动项目](#%E5%90%AF%E5%8A%A8%E9%A1%B9%E7%9B%AE)
 		- [常用api](#%E5%B8%B8%E7%94%A8api)
 	- [appui 测试（appium）](#appui-%E6%B5%8B%E8%AF%95%EF%BC%88appium%EF%BC%89)
+		- [下载](#%E4%B8%8B%E8%BD%BD-1)
+			- [mac 下 android环境搭建](#mac-%E4%B8%8B-android%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA)
+				- [ios环境搭建](#ios%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA)
 		- [文件](#%E6%96%87%E4%BB%B6)
 		- [启动项目](#%E5%90%AF%E5%8A%A8%E9%A1%B9%E7%9B%AE-1)
 		- [常用api](#%E5%B8%B8%E7%94%A8api-1)
@@ -15,7 +20,9 @@
 
 
 # ui测试
-## webui 测试（selenium） 
+## webui 测试（selenium）
+#### 下载
+[webDriver](http://chromedriver.storage.googleapis.com/index.html) 
 #### 项目文件
 pom.xml
 ```xml
@@ -40,8 +47,9 @@ pom.xml
             <version>3.8.1</version>
         </dependency>
 ```
-testing_uat.xml
-可通过`@Parameters({ "properties", "browsertype", "browserversion", "remoteIP" })`应用到响应的方法。 
+testing_uat.xml。 
+
+可通过`@Parameters({ "properties", "browsertype", "browserversion", "remoteIP" })`应用到相应的方法。    
 `@Test(groups = { "setContactField"})` 标记所属组。
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
@@ -78,6 +86,29 @@ JavascriptExecutor jse = ((JavascriptExecutor) driver);
 jse.executeScript("window.scrollBy(50,200)"); //直接执行js，也有异步方法
 ```
 ## appui 测试（appium）
+#### 下载
+[appium](https://bitbucket.org/appium/appium.app/downloads/)  
+[androidSDK](https://developer.android.com/studio/#downloads)  
+若选择命令行安装，还需手动安装sdk
+##### mac 下 android环境搭建 
+1. 安装 sdk
+```bash
+brew cask install android-sdk 
+sdkmanager "build-tools;28.0.1"  "platform-tools"  "system-images;android-28;google_apis;x86_64" "emulator"
+```
+创建Android模拟器 `avdmanager create avd -n test -k 'system-images;android-28;google_apis;x86_64'`  
+启动android模拟器 `emulator -avd test`  
+2. 获取设备号，包名，主页。
+```bash
+adb devices
+adb shell "dumpsys window | grep mCurrentFocus"
+```
+3. 查找元素 
+```bash
+uiautomatorviewer
+```
+###### ios环境搭建
+
 #### 文件
 pom.xml
 ```pom
@@ -92,14 +123,14 @@ testing_uat.xml
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
-<suite name="HmapApp_AutoTest自动化测试执行">
+<suite name="autotest">
 	<parameter name="Platform_Name" value="Android" />
 	<parameter name="Platform_Version" value="5.1" />
 	<parameter name="Device_Name" value="R8W4D6PB99999999" />
 	<parameter name="udid" value="R8W4D6PB99999999" />
 	<parameter name="App_Package" value="com.zjgsh.dev" />
 	<parameter name="App_Activity" value="com.hand.hrms.activity.SplashActivity" />
-	<parameter name="Driver_Url" value="http://127.0.0.1:4723/wd/hub" />
+	<parameter name="Driver_Url" value="http://127.0.0.1:∏4723/wd/hub" />
 	<parameter name="properties" value="src/main/resources/configHmapAppTest.properties" />
 	<test name="HmapAppRegistTest1" preserve-order="true" verbose="10">
 		<groups>
@@ -115,7 +146,14 @@ testing_uat.xml
  </suite>
 ```
 #### 启动项目
-与webui测试一致
+1. 启动appium
+2. 修改配置文件
+```
+Device_Name=emulator-5554
+App_Package=com.zjgsh.dev
+App_Activity=com.hand.hrms.activity.SplashActivity
+```
+3. run testing_uat.xml 
 
 #### 常用api
 ```java
