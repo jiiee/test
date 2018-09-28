@@ -2,18 +2,18 @@
 <!-- MarkdownTOC autolink="true" -->
 
 - [ui测试](#ui%E6%B5%8B%E8%AF%95)
-	- [webui 测试（selenium）](#webui-%E6%B5%8B%E8%AF%95%EF%BC%88selenium%EF%BC%89)
-		- [下载](#%E4%B8%8B%E8%BD%BD)
-		- [项目文件](#%E9%A1%B9%E7%9B%AE%E6%96%87%E4%BB%B6)
-		- [启动项目](#%E5%90%AF%E5%8A%A8%E9%A1%B9%E7%9B%AE)
-		- [常用api](#%E5%B8%B8%E7%94%A8api)
-	- [appui 测试（appium）](#appui-%E6%B5%8B%E8%AF%95%EF%BC%88appium%EF%BC%89)
-		- [下载](#%E4%B8%8B%E8%BD%BD-1)
-			- [mac 下 android环境搭建](#mac-%E4%B8%8B-android%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA)
-				- [ios环境搭建](#ios%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA)
-		- [文件](#%E6%96%87%E4%BB%B6)
-		- [启动项目](#%E5%90%AF%E5%8A%A8%E9%A1%B9%E7%9B%AE-1)
-		- [常用api](#%E5%B8%B8%E7%94%A8api-1)
+    - [webui 测试（selenium）](#webui-%E6%B5%8B%E8%AF%95%EF%BC%88selenium%EF%BC%89)
+        - [下载](#%E4%B8%8B%E8%BD%BD)
+        - [项目文件](#%E9%A1%B9%E7%9B%AE%E6%96%87%E4%BB%B6)
+        - [启动项目](#%E5%90%AF%E5%8A%A8%E9%A1%B9%E7%9B%AE)
+        - [常用api](#%E5%B8%B8%E7%94%A8api)
+    - [appui 测试（appium）](#appui-%E6%B5%8B%E8%AF%95%EF%BC%88appium%EF%BC%89)
+        - [下载](#%E4%B8%8B%E8%BD%BD-1)
+        - [mac 下 android环境搭建](#mac-%E4%B8%8B-android%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA)
+        - [ios环境搭建](#ios%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA)
+        - [文件](#%E6%96%87%E4%BB%B6)
+        - [启动项目](#%E5%90%AF%E5%8A%A8%E9%A1%B9%E7%9B%AE-1)
+        - [常用api](#%E5%B8%B8%E7%94%A8api-1)
 - [jmeter测试](#jmeter%E6%B5%8B%E8%AF%95)
 
 <!-- /MarkdownTOC -->
@@ -87,10 +87,10 @@ jse.executeScript("window.scrollBy(50,200)"); //直接执行js，也有异步方
 ```
 ## appui 测试（appium）
 #### 下载
-[appium](https://bitbucket.org/appium/appium.app/downloads/)  
-[androidSDK](https://developer.android.com/studio/#downloads)  
-若选择命令行安装，还需手动安装sdk
-##### mac 下 android环境搭建 
+[appium](https://github.com/appium/appium-desktop/releases)  
+[androidSDK](https://developer.android.com/studio/#downloads)  若选择命令行安装，还需手动安装sdk  
+[xcode](https://developer.apple.com/download/)
+#### mac 下 android环境搭建 
 1. 安装 sdk
 ```bash
 brew cask install android-sdk 
@@ -107,8 +107,9 @@ adb shell "dumpsys window | grep mCurrentFocus"
 ```bash
 uiautomatorviewer
 ```
-###### ios环境搭建
 
+#### ios环境搭建
+直接可以使用
 #### 文件
 pom.xml
 ```pom
